@@ -29,6 +29,7 @@ export default class App extends Component {
   } 
   onAddNewItem = (text) => {
     this.setState(({todoList}) => {
+
       let newid;
       // for(let i = 1; i<todoList.length; i++){
       //   if(todoList[i].id > todoList[i-1].id){
@@ -63,12 +64,11 @@ export default class App extends Component {
       console.log(result);
       return {todoList:result}
     })
-    this.Search('');
   }
 
   Search = (text) => {
-    this.setState(({todoListcopy}) => {
-      return { todoListcopy: text}
+    this.setState(({todoListcopy}) => {;
+      return { todoListcopy: text }
     })
   }
 

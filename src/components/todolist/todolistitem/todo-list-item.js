@@ -51,7 +51,7 @@ class Todolistitem extends React.Component {
             marginLeft: '2px',
         }
         return (//надо писать this перед названием функции
-            <div> 
+            <div>
                 <div className={linethrought} onClick={this.onclickdone} style={ style }>{ label }</div>
                 <div className="buttonsdiv">
                     <button className="margin" onClick={onDeleted}><object data={Delete}>b</object></button>
