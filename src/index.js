@@ -29,7 +29,6 @@ export default class App extends Component {
   } 
   onAddNewItem = (text) => {
     this.setState(({todoList}) => {
-
       let newid;
       // for(let i = 1; i<todoList.length; i++){
       //   if(todoList[i].id > todoList[i-1].id){
