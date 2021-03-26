@@ -28,34 +28,38 @@ export default class App extends Component {
     })
   } 
   onAddNewItem = (text) => {
-    this.setState(({todoList}) => {
-      let newid;
-      if(todoList.length === 0){
-        newid = 1;
-      } else if(todoList.length === 1){
-        newid = 2
-      } else {
-        newid = todoList.length+1;
-      }
-      const el = {
-        label: text,
-        important: false,
-        id: newid
-      }
-      console.log(el);  
-      const important = [];
-      const notimportant =[];
-      
-      for (let i = 0; i < todoList.length; i++) {
-        let list = todoList[i];
-        if(list.important) important.unshift(list) 
-        else if(!list.important) notimportant.push(list);
-      }
-      notimportant.unshift(el);
-      const result = [...important, ...notimportant];
-      console.log(result);
-      return {todoList:result}
-    })
+     if(text.length === 0) {
+       alert('эта заметка пустая!');
+     } else {
+      this.setState(({todoList}) => {
+        let newid;
+        if(todoList.length === 0){
+          newid = 1;
+        } else if(todoList.length === 1){
+          newid = 2
+        } else {
+          newid = todoList.length+1;
+        }
+        const el = {
+          label: text,
+          important: false,
+          id: newid
+        }
+        console.log(el);  
+        const important = [];
+        const notimportant =[];
+        
+        for (let i = 0; i < todoList.length; i++) {
+          let list = todoList[i];
+          if(list.important) important.unshift(list) 
+          else if(!list.important) notimportant.push(list);
+        }
+        notimportant.unshift(el);
+        const result = [...important, ...notimportant];
+        console.log(result);
+        return {todoList:result}
+      })
+     }
   }
 
   Search = (text) => {
