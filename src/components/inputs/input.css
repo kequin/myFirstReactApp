@@ -27,7 +27,7 @@ input:focus {
     box-shadow: 0 0 7px #79B6F2;
 }
 
-.apply{
+form button{
     margin-left: 5px;
     float: right;
     height: 42px;
@@ -39,7 +39,7 @@ input:focus {
     background-color: #282C34;
     border: solid #61DAFB 3px;
 }
-.apply img {
+form button img {
     margin-top: 3px;
     height: 26px;
 }

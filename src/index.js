@@ -30,13 +30,6 @@ export default class App extends Component {
   onAddNewItem = (text) => {
     this.setState(({todoList}) => {
       let newid;
-      // for(let i = 1; i<todoList.length; i++){
-      //   if(todoList[i].id > todoList[i-1].id){
-      //     newid = todoList[i].id + 1;
-      //   } else if(todoList[i] < todoList[i-1].id) {
-      //     newid = todoList[i-1].id+2;
-      //   }
-      // }
       if(todoList.length === 0){
         newid = 1;
       } else if(todoList.length === 1){
@@ -67,7 +60,8 @@ export default class App extends Component {
 
   Search = (text) => {
     this.setState(({todoListcopy}) => {;
-      return { todoListcopy: text }
+      if(text === '') return { todoListcopy: '' }
+      else return { todoListcopy: text}
     })
   }
 
@@ -94,11 +88,12 @@ export default class App extends Component {
 
   Searchel(items, todoListcopy) {
     if(todoListcopy.length === 0){
+      console.log(todoListcopy)
       return items;
     }
     return items.filter((item) => { 
-      return item.label.toLowerCase().indexOf(todoListcopy.toLowerCase()) > -1;
-    });
+         return item.label.toLowerCase().indexOf(todoListcopy.toLowerCase()) > -1
+       });
   }
 
   render () {
