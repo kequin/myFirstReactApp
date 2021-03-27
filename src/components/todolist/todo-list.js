@@ -2,7 +2,7 @@ import React from "react";
 import Todolistitem from "./todolistitem/todo-list-item";
 import './todolist.css'
 
-const Todolist = ({todos, onDeleted, onImportant}) => {
+const Todolist = ({todos, onDeleted, onImportant, doNe}) => {
     const elements = todos.map((item) => { //пропиши console.log(item);
     const {id, ...otherprops } = item; //находится id ему присвается id а otherprops присваевается остальные элементы массива
     const styleli = {
@@ -11,7 +11,8 @@ const Todolist = ({todos, onDeleted, onImportant}) => {
     return (
         <li style={styleli} key = {id}><Todolistitem 
         onDeleted={() => onDeleted(id)}
-        onImportant={() => onImportant(id)}
+        onImportant={() => onImportant(id)} 
+        doNe={()=> doNe(id)}
       {...otherprops}/></li>
             // если непонятно то смотри урок по спрэд оператору в es6 
             //  а так это все элементы массива НО важно чтобы названия совпадали с значениями

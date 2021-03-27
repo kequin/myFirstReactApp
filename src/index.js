@@ -9,9 +9,9 @@ export default class App extends Component {
   state = {
     todoList: [
       // { label: "Выпить кофе", important: false, id:1},
-      { label: "Выкинуть мусор", important: true, id:1},
-      { label: "Создать новый амазон", important: false, id:2},
-      { label: "Создать новый фейсбук", important: false, id:3}
+      { label: "Выкинуть мусор", done: false, important: true, id:1},
+      { label: "Создать новый амазон", done: false, important: false, id:2},
+      { label: "Создать новый фейсбук", done: false, important: false, id:3}
     ],
     todoListcopy: ''
   }
@@ -56,17 +56,29 @@ export default class App extends Component {
         }
         notimportant.unshift(el);
         const result = [...important, ...notimportant];
-        console.log(result);
         return {todoList:result}
+
       })
      }
   }
 
-  Search = (text) => {
-    this.setState(({todoListcopy}) => {;
-      if(text === '') return { todoListcopy: '' }
-      else return { todoListcopy: text}
+  Done = (id) => {
+    this.setState(({todoList}) => {
+      const copytodolist = todoList;
+      const thisel = todoList.findIndex((el) => el.id === id);
+      copytodolist[thisel].done = !copytodolist[thisel].done;
+      console.log(copytodolist[thisel].done)
+      
+      return {todoList:copytodolist}
     })
+  }
+
+  Search = (text) => {
+    this.setState(({todoListcopy}) => {
+        return { todoListcopy: text }
+      
+    })
+    console.log(text)
   }
 
   onImportant = (id) => {
@@ -91,10 +103,7 @@ export default class App extends Component {
   
 
   Searchel(items, todoListcopy) {
-    if(todoListcopy.length === 0){
-      console.log(todoListcopy)
-      return items;
-    }
+    console.log(todoListcopy)
     return items.filter((item) => { 
          return item.label.toLowerCase().indexOf(todoListcopy.toLowerCase()) > -1
        });
@@ -109,6 +118,7 @@ export default class App extends Component {
         <Todolist todos = {visibleitems}
         onDeleted={ this.DeletedFun }
         onImportant={ this.onImportant}
+        doNe={ this.Done}
           />
       </div>
     );
