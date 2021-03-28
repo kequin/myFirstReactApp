@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import Header from "./components/headerp/header";
 import Input from "./components/inputs/input";
 import Todolist from "./components/todolist/todo-list";
+import Filter from './components/filter/filter';
 
 export default class App extends Component {
   state = {
@@ -103,7 +104,6 @@ export default class App extends Component {
   
 
   Searchel(items, todoListcopy) {
-    console.log(todoListcopy)
     return items.filter((item) => { 
          return item.label.toLowerCase().indexOf(todoListcopy.toLowerCase()) > -1
        });
@@ -113,7 +113,8 @@ export default class App extends Component {
     let visibleitems = this.Searchel(this.state.todoList, this.state.todoListcopy);
     return (
       <div className="style">
-        <Header />
+        <Header arrayalltodos = {this.state.todoList} />
+        <Filter />
         <Input onSearch={this.Search} onAddItem={ this.onAddNewItem }/>
         <Todolist todos = {visibleitems}
         onDeleted={ this.DeletedFun }

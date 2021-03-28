@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './headerh1.css';
 
-const Header = () => {
-    return <h1 className="center">Список дел</h1>;
-  }
+export default class Header extends Component {
+    done = (arr) => {
+      let perem = 0;
+      for(let i = 0; i<arr.length; i++){
+        if(arr[i].done){
+          perem++;
+        } else {
 
-export default Header;
+        }
+      }
+      return perem
+    }
+    render(){
+      const {arrayalltodos} = this.props;
+      return (
+        <h1 className="center">Заметки, {this.done(arrayalltodos)} выполнено из {arrayalltodos.length}</h1>
+
+      )
+    }
+}
