@@ -4,9 +4,8 @@ import reportWebVitals from './reportWebVitals';
 import Header from "./components/headerp/header";
 import Input from "./components/inputs/input";
 import Todolist from "./components/todolist/todo-list";
-import Filter from './components/filter/filter';
 
-export default class App extends Component {
+export default class App extends Component { 
   state = {
     todoList: [
       // { label: "Выпить кофе", important: false, id:1},
@@ -14,7 +13,7 @@ export default class App extends Component {
       { label: "Создать новый амазон", done: false, important: false, id:2},
       { label: "Создать новый фейсбук", done: false, important: false, id:3}
     ],
-    todoListcopy: ''
+    searchstr: ''
   }
   DeletedFun = (id) => {
     this.setState(({todoList}) => {
@@ -68,18 +67,15 @@ export default class App extends Component {
       const copytodolist = todoList;
       const thisel = todoList.findIndex((el) => el.id === id);
       copytodolist[thisel].done = !copytodolist[thisel].done;
-      console.log(copytodolist[thisel].done)
-      
       return {todoList:copytodolist}
     })
   }
 
   Search = (text) => {
-    this.setState(({todoListcopy}) => {
-        return { todoListcopy: text }
+    this.setState(({searchstr}) => {
+        return { searchstr: text }
       
     })
-    console.log(text)
   }
 
   onImportant = (id) => {
@@ -109,12 +105,13 @@ export default class App extends Component {
        });
   }
 
+  
+
   render () {
-    let visibleitems = this.Searchel(this.state.todoList, this.state.todoListcopy);
+    let visibleitems = this.Searchel(this.state.todoList, this.state.searchstr);
     return (
       <div className="style">
         <Header arrayalltodos = {this.state.todoList} />
-        <Filter />
         <Input onSearch={this.Search} onAddItem={ this.onAddNewItem }/>
         <Todolist todos = {visibleitems}
         onDeleted={ this.DeletedFun }
